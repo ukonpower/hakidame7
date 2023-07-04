@@ -5,6 +5,8 @@ import { Tree } from '../Entities/Tree';
 import { Cave } from '../Entities/Cave';
 import { Sky } from '../Entities/Sky';
 import { Floor } from '../Entities/Floor';
+import { EGridDot } from '../Entities/EGridDot';
+import { EBorder } from '../Entities/EBorder';
 
 export const router = ( node: GLP.BLidgeNode ) => {
 
@@ -25,6 +27,14 @@ export const router = ( node: GLP.BLidgeNode ) => {
 	} else if ( node.class == "Floor" ) {
 
 		return new Floor();
+
+	} else if ( node.class == 'EGridDot' ) {
+
+		return new EGridDot();
+
+	} else if ( node.class == "EBorder" ) {
+
+		return new EBorder();
 
 	}
 

@@ -79,7 +79,7 @@ export class Scene extends GLP.EventEmitter {
 		this.elapsedTime += this.deltaTime;
 		this.currentTime = currentTime;
 
-		blidge.frame.current = this.elapsedTime * 30 % blidge.frame.end;
+		// blidge.frame.current = this.elapsedTime * 30 % blidge.frame.end;
 
 		globalUniforms.time.uTime.value = this.elapsedTime;
 		globalUniforms.time.uFractTime.value = this.elapsedTime % 1;

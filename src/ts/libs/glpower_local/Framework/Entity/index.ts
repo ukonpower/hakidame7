@@ -9,6 +9,8 @@ import { Matrix } from "../../Math/Matrix";
 import { Quaternion } from "../../Math/Quaternion";
 import { Vector } from "../../Math/Vector";
 import { EventEmitter } from "../../utils/EventEmitter";
+import { BLidge, BLidgeNode } from "../BLidge";
+import { BLidger } from "../Component/BLidger";
 
 export type EntityUpdateEvent = {
 	time: number,
@@ -36,6 +38,8 @@ export class Entity extends EventEmitter {
 	public parent: Entity | null;
 	public children: Entity[];
 	public components: Map<string, Component>;
+
+	protected blidgeNode?: BLidgeNode;
 
 	public visible: boolean;
 
@@ -231,6 +235,12 @@ export class Entity extends EventEmitter {
 
 		this.components.set( name, component );
 
+		if ( name == "blidger" ) {
+
+			this.addBLidger( component as unknown as BLidger );
+
+		}
+
 		return component;
 
 	}
@@ -249,6 +259,21 @@ export class Entity extends EventEmitter {
 
 		return component;
 
+	}
+
+	/*-------------------------------
+		BLidger
+	-------------------------------*/
+
+	private addBLidger( blidger: BLidger ) {
+
+		this.blidgeNode = blidger.node;
+
+		this.addBlidgerImpl( blidger );
+
+	}
+
+	protected addBlidgerImpl( blidger: BLidger ) {
 	}
 
 	/*-------------------------------

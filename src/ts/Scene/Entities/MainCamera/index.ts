@@ -79,6 +79,10 @@ export class MainCamera extends GLP.Entity {
 	private resolutionInv: GLP.Vector;
 	private resolutionBloom: GLP.Vector[];
 
+	// curves
+
+	private stateCurve?: GLP.FCurveGroup;
+
 	// tmps
 
 	private tmpVector1: GLP.Vector;
@@ -450,6 +454,19 @@ export class MainCamera extends GLP.Entity {
 
 	protected updateImpl( event: GLP.ComponentUpdateEvent ): void {
 
+		// fov
+
+		if ( this.stateCurve ) {
+
+			const focalLength = this.stateCurve.setFrame( blidge.frame.current ).value.x;
+
+			const ff = 2 * Math.atan( 12 / ( 2 * focalLength ) ) / Math.PI * 180;
+			this.baseFov = ff;
+
+			this.updateCameraParams( this.resolution );
+
+		}
+
 		// dof params
 
 		this.matrixWorld.decompose( this.tmpVector1 );
@@ -532,32 +549,11 @@ export class MainCamera extends GLP.Entity {
 
 	}
 
-	public addComponent<T extends GLP.Component>( name: GLP.BuiltInComponents, component: T ): T {
+	protected addBlidgerImpl( blidger: GLP.BLidger ): void {
 
-		super.addComponent( name, component );
+		const node = blidger.node;
 
-		if ( name == 'blidger' ) {
-
-			const blidger = component as unknown as GLP.BLidger;
-			const node = blidger.node;
-
-			const cameraStateCurve = blidge.getCurveGroup( node.animation.state )!;
-
-			this.on( "update", ( e: GLP.EntityUpdateEvent ) => {
-
-				const focalLength = cameraStateCurve.setFrame( blidge.frame.current ).value.x;
-
-				const ff = 2 * Math.atan( 12 / ( 2 * focalLength ) ) / Math.PI * 180;
-				this.baseFov = ff;
-
-				this.updateCameraParams( this.resolution );
-
-			} );
-
-
-		}
-
-		return component;
+		this.stateCurve = blidge.getCurveGroup( node.animation.state )!;
 
 	}
 
