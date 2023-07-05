@@ -9,7 +9,18 @@ void main( void ) {
 
 	#include <vert_in>
 
-	vUv.x *= modelMatrix[0][0] / modelMatrix[1][1];
+	float aspect = modelMatrix[0][0] / modelMatrix[1][1];
+
+	if( aspect < 1.0 ) {
+
+		outUv.x *= aspect;
+
+	} else {
+
+		outUv.y /= aspect;
+
+	}
+
 
 	#include <vert_out>
 	
