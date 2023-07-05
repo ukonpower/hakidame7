@@ -22,10 +22,10 @@ export class RingGeometry extends Geometry {
 				const r = j / thetaSegments * Math.PI * 2.0;
 
 				const x = Math.sin( r ) * radius;
-				const z = Math.cos( r ) * radius;
+				const y = Math.cos( r ) * radius;
 
-				posArray.push( x, 0, z );
-				uvArray.push( i / phiSegments, j / thetaSegments );
+				posArray.push( x, y, 0 );
+				uvArray.push( j / thetaSegments, i / phiSegments );
 				normalArray.push( 0, 1, 0 );
 
 				if ( i > 0 && j < thetaSegments ) {
@@ -34,12 +34,12 @@ export class RingGeometry extends Geometry {
 
 					indexArray.push(
 						c,
-						( c + 1 ),
 						( c - totalThetaSegments ),
+						( c + 1 ),
 
 						( c + 1 ),
-						( c + 1 - totalThetaSegments ),
 						( c - totalThetaSegments ),
+						( c + 1 - totalThetaSegments ),
 					);
 
 				}

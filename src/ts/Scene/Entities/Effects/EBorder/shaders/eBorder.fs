@@ -6,7 +6,7 @@ uniform float uTime;
 
 void main( void ) {
 
-	float alpha = sin( ( vUv.x - vUv.y ) * 20.0 - uTime ) * 0.5 + 0.5; 
+	float alpha = sin( ( vUv.x - vUv.y ) * 20.0 - uTime * 5.0 ) * 0.5 + 0.5; 
 
 	if( alpha < 0.5 ) discard;
 

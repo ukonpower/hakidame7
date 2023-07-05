@@ -25,8 +25,6 @@ export class Rings extends GLP.Entity {
 
 			const n = count > 1 ? i / count - 0.5 : 0;
 
-
-
 			positionArray.push(
 				0,
 				n * 0.5 * 1.0,

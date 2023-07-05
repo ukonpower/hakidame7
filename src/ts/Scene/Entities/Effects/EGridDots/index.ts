@@ -3,10 +3,10 @@ import * as GLP from 'glpower';
 import { globalUniforms } from '~/ts/Globals';
 import { hotGet, hotUpdate } from '~/ts/libs/glpower_local/Framework/Utils/Hot';
 
-import eGridDotVert from './shaders/eGridDot.vs';
-import eGridDotFrag from './shaders/eGridDot.fs';
+import eGridDotsVert from './shaders/eGridDots.vs';
+import eGridDotsFrag from './shaders/eGridDots.fs';
 
-export class EGridDot extends GLP.Entity {
+export class EGridDots extends GLP.Entity {
 
 	constructor() {
 
@@ -50,19 +50,19 @@ export class EGridDot extends GLP.Entity {
 			Material
 		-------------------------------*/
 
-		const matName = "eGridDot";
+		const matName = "eGridDots";
 
 		const mat = this.addComponent( "material", new GLP.Material( {
 			name: matName,
 			type: [ "deferred", "shadowMap" ],
 			uniforms: GLP.UniformsUtils.merge( globalUniforms.time ),
-			vert: hotGet( matName + "vs", eGridDotVert ),
-			frag: hotGet( matName + "fs", eGridDotFrag ),
+			vert: hotGet( matName + "vs", eGridDotsVert ),
+			frag: hotGet( matName + "fs", eGridDotsFrag ),
 		} ) );
 
 		if ( import.meta.hot ) {
 
-			import.meta.hot.accept( "./shaders/eGridDot.fs", ( module ) => {
+			import.meta.hot.accept( "./shaders/eGridDots.fs", ( module ) => {
 
 				if ( module ) {
 
@@ -73,7 +73,7 @@ export class EGridDot extends GLP.Entity {
 
 			} );
 
-			import.meta.hot.accept( "./shaders/eGridDot.vs", ( module ) => {
+			import.meta.hot.accept( "./shaders/eGridDots.vs", ( module ) => {
 
 				if ( module ) {
 

@@ -5,8 +5,9 @@ import { Tree } from '../Entities/Tree';
 import { Cave } from '../Entities/Cave';
 import { Sky } from '../Entities/Sky';
 import { Floor } from '../Entities/Floor';
-import { EGridDot } from '../Entities/EGridDot';
-import { EBorder } from '../Entities/EBorder';
+import { EBorder } from '../Entities/Effects/EBorder';
+import { EGridDots } from '../Entities/Effects/EGridDots';
+import { ERing } from '../Entities/Effects/ERing';
 
 export const router = ( node: GLP.BLidgeNode ) => {
 
@@ -28,13 +29,17 @@ export const router = ( node: GLP.BLidgeNode ) => {
 
 		return new Floor();
 
-	} else if ( node.class == 'EGridDot' ) {
+	} else if ( node.class == 'EGridDots' ) {
 
-		return new EGridDot();
+		return new EGridDots();
 
 	} else if ( node.class == "EBorder" ) {
 
 		return new EBorder();
+
+	} else if ( node.class == "ERing" ) {
+
+		return new ERing();
 
 	}
 
