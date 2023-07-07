@@ -15,8 +15,6 @@ void main( void ) {
 
 	#include <vert_in>
 
-	// outPos.xz *= (id.x * 0.3 + 0.7) + (sin( - uTime * 0.5 ) * 0.5 + 0.5) * ( id.x * 0.8 + 0.2);
-
 	outPos += offsetPosition;
 	
 	#include <vert_out>

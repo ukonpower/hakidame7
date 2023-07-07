@@ -57,6 +57,12 @@ float atan2(in float y, in float x)
 
 #define linearstep(edge0, edge1, x) min(max(((x) - (edge0)) / ((edge1) - (edge0)), 0.0), 1.0)
 
+float easeInOut( float x ) {
+
+	return x < 0.5 ? 8.0 * x * x * x * x : 1.0 - pow(-2.0 * x + 2.0, 4.0) / 2.0;
+
+}
+
 float easeOut( float t, float k ) {
 
 	float x = exp( - clamp( t, 0.0, 1.0 ) * k );

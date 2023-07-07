@@ -3,20 +3,20 @@
 #include <frag_h>
 
 in float vTime;
-
+uniform float uTime;
 void main( void ) {
 
-	float alpha = smoothstep( 0.0, 0.1, -vUv.x + vTime * ( 1.1 ) * 10.0 );
+	float alpha = 1.0;
 
-	float dis = smoothstep( 0.6, 0.63, vTime );
+	alpha *= sin( vUv.x * 150.0 + uTime * 5.0 );
 
-	alpha *= mix( cos( dis * 100.0  ), 0.0, dis );
+	alpha *= smoothstep( 0.0, 0.1, -fract(vUv.x * 3.0) + vTime * ( 1.1 ) * 1.0 );
 
 	if( alpha <= 0.0 ) discard;
 
 	#include <frag_in>
 
-	outEmission = vec3( alpha );
+	outEmission = vec3( 1.0, 1.0, 1.0 );
 
 	#include <frag_out>
 

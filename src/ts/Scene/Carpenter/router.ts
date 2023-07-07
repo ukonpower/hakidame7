@@ -8,6 +8,7 @@ import { Floor } from '../Entities/Floor';
 import { EBorder } from '../Entities/Effects/EBorder';
 import { EGridDots } from '../Entities/Effects/EGridDots';
 import { ERing } from '../Entities/Effects/ERing';
+import { ECross } from '../Entities/Effects/ECross';
 
 export const router = ( node: GLP.BLidgeNode ) => {
 
@@ -40,6 +41,10 @@ export const router = ( node: GLP.BLidgeNode ) => {
 	} else if ( node.class == "ERing" ) {
 
 		return new ERing();
+
+	} else if ( node.class == "ECross" ) {
+
+		return new ECross();
 
 	}
 
