@@ -3,6 +3,7 @@ import { EBorder } from '../EBorder';
 import { ECross } from '../ECross';
 import { EGridDots } from '../EGridDots';
 import { ERing } from '../ERing';
+import { EGridLine } from '../EGridLine';
 
 export class EArea extends GLP.Entity {
 
@@ -19,7 +20,7 @@ export class EArea extends GLP.Entity {
 
 		const getEffect = ( ) => {
 
-			const t = Math.floor( Math.random() * 4.0 );
+			const t = Math.floor( Math.random() * 5.0 );
 
 			if ( t == 0 ) {
 
@@ -33,15 +34,21 @@ export class EArea extends GLP.Entity {
 
 				const gridType = Math.random() < 0.5 ? 'circle' : 'square';
 
-				return new EGridDots( gridType );
+				return new EGridDots( gridType, undefined, undefined, Math.random() );
 
-			} else {
+			} else if ( t == 3 ) {
 
 				const ringType = Math.random() < 0.5 ? 'line' : 'dash';
 
 				return new ERing( ringType );
 
+			} else if ( t == 4 ) {
+
+				return new EGridLine( undefined, undefined, new GLP.Vector( Math.random(), Math.random() ) );
+
 			}
+
+			return new GLP.Entity();
 
 		};
 
