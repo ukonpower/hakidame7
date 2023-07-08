@@ -8,7 +8,11 @@ void main( void ) {
 
 	float alpha = 1.0;
 
-	alpha *= sin( vUv.x * 150.0 + uTime * 5.0 );
+	#ifdef IS_DASH
+
+		alpha *= sin( vUv.x * 150.0 + uTime * 5.0 );
+		
+	#endif
 
 	alpha *= smoothstep( 0.0, 0.1, -fract(vUv.x * 3.0) + vTime * ( 1.1 ) * 1.0 );
 

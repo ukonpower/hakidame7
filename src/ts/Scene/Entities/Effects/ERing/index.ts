@@ -6,9 +6,11 @@ import { hotGet, hotUpdate } from '~/ts/libs/glpower_local/Framework/Utils/Hot';
 import eRingVert from './shaders/eRing.vs';
 import eRingFrag from './shaders/eRing.fs';
 
+type RingType = 'line' | 'dash'
+
 export class ERing extends GLP.Entity {
 
-	constructor() {
+	constructor( ringType: RingType = 'dash' ) {
 
 		super();
 
@@ -27,6 +29,14 @@ export class ERing extends GLP.Entity {
 
 		const matName = "eRing";
 
+		const defines: {[key:string]: string} = {};
+
+		if ( ringType == "dash" ) {
+
+			defines[ "IS_DASH" ] = 'π';
+
+		}
+
 		const mat = this.addComponent( "material", new GLP.Material( {
 			name: matName,
 			type: [ "deferred", "shadowMap" ],
@@ -36,6 +46,7 @@ export class ERing extends GLP.Entity {
 					type: "2fv"
 				}
 			} ),
+			defines,
 			vert: hotGet( matName + "vs", eRingVert ),
 			frag: hotGet( matName + "fs", eRingFrag ),
 		} ) );

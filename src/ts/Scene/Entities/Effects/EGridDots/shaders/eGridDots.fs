@@ -6,6 +6,12 @@ in float vAlpha;
 
 void main( void ) {
 
+	#ifdef IS_CIRCLR
+
+		if( length( vUv - 0.5 ) > 0.5 ) discard;
+	
+	#endif
+
 	if( vAlpha < 0.5 ) discard;
 
 	#include <frag_in>

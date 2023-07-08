@@ -31,11 +31,15 @@ export class EArea extends GLP.Entity {
 
 			} else if ( t == 2 ) {
 
-				return new EGridDots();
+				const gridType = Math.random() < 0.5 ? 'circle' : 'square';
+
+				return new EGridDots( gridType );
 
 			} else {
 
-				return new ERing();
+				const ringType = Math.random() < 0.5 ? 'line' : 'dash';
+
+				return new ERing( ringType );
 
 			}
 
@@ -47,7 +51,7 @@ export class EArea extends GLP.Entity {
 			effect.position.set( range.x * Math.random(), range.y * Math.random(), range.z * Math.random() );
 			effect.position.sub( range.clone().divide( 2.0 ) );
 
-			effect.scale.multiply( Math.random() * 0.5 + 0.5 );
+			effect.scale.multiply( Math.random() * 0.8 + 0.2 );
 
 			this.add( effect );
 

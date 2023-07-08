@@ -17,6 +17,6 @@ void main( void ) {
 	
 	#include <vert_out>
 
-	vAlpha = noise( insPos * 4.0 + vec3( 0.0, 0.0, uTime ) ) * 0.9;
+	vAlpha = noise( insPos * 4.0 + vec3( 0.0, 0.0, uTime + insId.z * 100.0 ) ) * 0.9;
 	
 }

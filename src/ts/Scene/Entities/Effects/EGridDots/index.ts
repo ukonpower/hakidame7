@@ -6,24 +6,24 @@ import { hotGet, hotUpdate } from '~/ts/libs/glpower_local/Framework/Utils/Hot';
 import eGridDotsVert from './shaders/eGridDots.vs';
 import eGridDotsFrag from './shaders/eGridDots.fs';
 
+type DotType = 'square' | 'circle'
+
 export class EGridDots extends GLP.Entity {
 
-	constructor() {
+	constructor( dotType: DotType = 'circle', res: GLP.Vector = new GLP.Vector( 8.0, 8.0 ), size: GLP.Vector = new GLP.Vector( 1.0, 1.0 ), dotSclae : number = 1.0 ) {
 
 		super();
-
-		const res = new GLP.Vector( 8, 8 );
-		const size = new GLP.Vector( 1, 1 );
 
 		/*-------------------------------
 			Geometyr
 		-------------------------------*/
 
-		const geo = new GLP.PlaneGeometry( size.x / res.x * 0.5, size.y / res.y * 0.5 );
+		const geo = new GLP.PlaneGeometry( size.x / res.x * 0.5 * dotSclae, size.y / res.y * 0.5 * dotSclae );
 
 		const instancePosArray: number[] = [];
 		const instanceIdArray: number [] = [];
 
+		const gRnd = Math.random();
 
 		for ( let i = 0; i < res.y; i ++ ) {
 
@@ -34,7 +34,7 @@ export class EGridDots extends GLP.Entity {
 				);
 
 				instanceIdArray.push(
-					j, i, Math.random()
+					j, i, gRnd
 				);
 
 			}
@@ -52,10 +52,20 @@ export class EGridDots extends GLP.Entity {
 
 		const matName = "eGridDots";
 
+		const defines: {[key:string]:string} = {};
+
+		if ( dotType == 'circle' ) {
+
+			defines[ "IS_CIRCLE" ] = "";
+
+		}
+
 		const mat = this.addComponent( "material", new GLP.Material( {
 			name: matName,
 			type: [ "deferred", "shadowMap" ],
-			uniforms: GLP.UniformsUtils.merge( globalUniforms.time ),
+			uniforms: GLP.UniformsUtils.merge( globalUniforms.time, {
+			} ),
+			defines,
 			vert: hotGet( matName + "vs", eGridDotsVert ),
 			frag: hotGet( matName + "fs", eGridDotsFrag ),
 		} ) );
