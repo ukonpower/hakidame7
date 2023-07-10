@@ -2,13 +2,15 @@
 #include <packing>
 #include <frag_h>
 
+uniform float uTime;
+
 in float vAlpha;
 
 void main( void ) {
 
-	#ifdef IS_CIRCLR
+	#ifdef IS_DASH
 
-		if( length( vUv - 0.5 ) > 0.5 ) discard;
+		if( sin( vUv.y * 70.0 ) < 0.0 ) discard;
 	
 	#endif
 
@@ -16,7 +18,7 @@ void main( void ) {
 
 	#include <frag_in>
 
-	outEmission = vec3( 0.8 );
+	outEmission = vec3( 0.2 );
 
 	#include <frag_out>
 

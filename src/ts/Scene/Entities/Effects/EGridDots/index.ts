@@ -62,7 +62,7 @@ export class EGridDots extends GLP.Entity {
 
 		const mat = this.addComponent( "material", new GLP.Material( {
 			name: matName,
-			type: [ "deferred", "shadowMap" ],
+			type: [ "deferred" ],
 			uniforms: GLP.UniformsUtils.merge( globalUniforms.time, {
 			} ),
 			defines,

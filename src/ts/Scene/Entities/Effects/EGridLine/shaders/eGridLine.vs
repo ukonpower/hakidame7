@@ -15,7 +15,7 @@ void main( void ) {
 	#include <vert_in>
 
 	outPos.y *= insId.z;
-	outPos.x *= 0.02;
+	outPos.x *= 0.01;
 
 	outPos.xy *= rotate( insId.x * HPI );
 
@@ -24,7 +24,5 @@ void main( void ) {
 	#include <vert_out>
 
 	vAlpha = 1.0;
-
-	// vAlpha = noise( insPos * 4.0 + vec3( 0.0, 0.0, uTime + insId.z * 100.0 ) ) * 0.9;
 	
 }

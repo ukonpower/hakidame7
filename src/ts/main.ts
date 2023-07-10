@@ -57,7 +57,8 @@ class App {
 
 		const canvasAspect = window.innerWidth / window.innerHeight;
 
-		const scale = 1.0; // canvasAspect < 1.0 ? Math.min( 1.5, window.devicePixelRatio ) : 1.0;
+		let scale = canvasAspect < 1.0 ? Math.min( 1.5, window.devicePixelRatio ) : 1.0;
+		scale *= 1.0;
 
 		const blkRatioX = canvasAspect < 1.0 ? 0.75 : 1.0;
 		const blkRatioY = canvasAspect < 1.0 ? 0.7 : 0.5;

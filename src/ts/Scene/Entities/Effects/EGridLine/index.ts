@@ -54,13 +54,13 @@ export class EGridLine extends GLP.Entity {
 
 		if ( lineType == 'dash' ) {
 
-			defines[ "IS_CIRCLE" ] = "";
+			defines[ "IS_DASH" ] = "";
 
 		}
 
 		const mat = this.addComponent( "material", new GLP.Material( {
 			name: matName,
-			type: [ "deferred", "shadowMap" ],
+			type: [ "deferred" ],
 			uniforms: GLP.UniformsUtils.merge( globalUniforms.time, {
 			} ),
 			defines,

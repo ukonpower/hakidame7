@@ -18,7 +18,7 @@ vec4 texOffset( sampler2D tex, vec2 uv, vec2 offsetPixel, vec2 resolutionInv ) {
 }
 
 #define FXAA_REDUCE_MIN   ( 1.0 / 128.0 )
-#define FXAA_REDUCE_MUL   ( 1.0 / 8.0 )
+#define FXAA_REDUCE_MUL   ( 1.0 / 16.0 )
 #define FXAA_SPAN_MAX    8.0
 
 void main( void ) {

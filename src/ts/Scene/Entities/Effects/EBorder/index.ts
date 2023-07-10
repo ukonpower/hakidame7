@@ -29,7 +29,7 @@ export class EBorder extends GLP.Entity {
 
 		const mat = this.addComponent( "material", new GLP.Material( {
 			name: matName,
-			type: [ "deferred", "shadowMap" ],
+			type: [ "deferred" ],
 			uniforms: GLP.UniformsUtils.merge( globalUniforms.time ),
 			vert: hotGet( matName + "vs", eBorderVert ),
 			frag: hotGet( matName + "fs", eBorderFrag ),
